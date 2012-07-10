@@ -1,0 +1,22 @@
+<%-
+defaults = Redmine::Plugin::registered_plugins[:global_queries_in_top_menu].settings[:default] 
+query_id=@settings['query_id'] || defaults['query_id']
+
+
+queries=Query.find(:all, :conditions => ["project_id IS NULL AND is_public=?", true])
+if queries.nil?
+	q=[]
+else
+	q=queries.map{|e| [e.name, "#{e.id}"]}
+end
+-%>
+
+<table cellspacing="15">
+<tr>
+<td><%=l(:label_in_top_menu_query)%><span class="required">*</span>: </td>
+<td>
+<%= select_tag 'settings[query_id]', options_for_select([['', 0]]+q.sort_by{|e| e[0]}, query_id) %>
+</td>
+</tr>
+
+</table>
