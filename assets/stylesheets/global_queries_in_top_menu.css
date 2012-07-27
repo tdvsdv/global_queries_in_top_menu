@@ -1,0 +1,8 @@
+#query_in_top_menu_count
+	{
+	display: block;	
+	background-image: url(../images/query_in_top_count.png);
+	background-repeat: no-repeat;
+	padding-left: 16px;
+	background-position: 0px -2px;
+	}

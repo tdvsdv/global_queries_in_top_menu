@@ -21,13 +21,17 @@ module GlobalQueriesInTopMenu
 		def get_top_menu_caption_query_name(project)
 			query=Query.find(Setting.plugin_global_queries_in_top_menu['query_id'])
 			if project!=nil
-				"<span id='query_in_top_menu'>#{query.name} &mdash; #{query.get_issues_count(project)}</span>".html_safe
+				issues_count=query.get_issues_count(project)
+				if(issues_count>0)
+					"<span id='query_in_top_menu'><span>#{query.name}</span> <span>&nbsp;(</span><span id='query_in_top_menu_count'>#{issues_count}</span><span>)</span></span>".html_safe
+				else
+					"<span id='query_in_top_menu'></span>".html_safe
+				end
 			else
-				"<span id='query_in_top_menu'>#{query.name} &mdash; #{query.issue_count}</span>".html_safe
+				#"<span id='query_in_top_menu'>#{query.name} &mdash; #{query.issue_count}</span>".html_safe
+				"<span id='query_in_top_menu'></span>".html_safe
 			end
 		end
-
-
 
 		def query_in_top_menu?
 			if Query.count(:conditions => ["id=?", Setting.plugin_global_queries_in_top_menu['query_id'] ])>0
