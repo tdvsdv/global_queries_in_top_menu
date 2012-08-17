@@ -1,13 +1,15 @@
 <div style="display: none;">
-<% if @project!=nil %>
-<span id='query_in_top_menu_query_link'>
-/projects/<%= @project.identifier %>/issues?query_id=<%= Setting.plugin_global_queries_in_top_menu['query_id'] %>
-</span> 
-<span id='query_in_top_menu_query_name'><%= Query.get_top_menu_caption_query_name(@project) %></span> 
-<% else %>
-<span id='query_in_top_menu_query_link'>
-/issues?query_id=<%= Setting.plugin_global_queries_in_top_menu['query_id'] %>
-</span> 
-<span id='query_in_top_menu_query_name'><%= Query.get_top_menu_caption_query_name(@project) %></span> 
+<% if Query.query_in_top_menu? %>
+	<% if @project!=nil %>
+		<span id='query_in_top_menu_query_link'>
+		/projects/<%= @project.identifier %>/issues?query_id=<%= Setting.plugin_global_queries_in_top_menu['query_id'] %>
+		</span> 
+		<span id='query_in_top_menu_query_name'><%= Query.get_top_menu_caption_query_name(@project) %></span> 
+	<% else %>
+		<span id='query_in_top_menu_query_link'>
+		/issues?query_id=<%= Setting.plugin_global_queries_in_top_menu['query_id'] %>
+		</span> 
+		<span id='query_in_top_menu_query_name'><%= Query.get_top_menu_caption_query_name(@project) %></span> 
+	<% end %>
 <% end %>
 </div>

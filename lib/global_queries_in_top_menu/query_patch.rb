@@ -34,11 +34,11 @@ module GlobalQueriesInTopMenu
 		end
 
 		def query_in_top_menu?
-			if Query.count(:conditions => ["id=?", Setting.plugin_global_queries_in_top_menu['query_id'] ])>0
-				true
-			else
-				false
-			end
+				if Query.count(:conditions => ["id=?", Setting.plugin_global_queries_in_top_menu['query_id'] ])>0
+					true
+				else
+					false
+				end
 		end
 
 	end
